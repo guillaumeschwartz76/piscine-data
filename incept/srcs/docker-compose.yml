@@ -1,0 +1,54 @@
+services:
+
+  postgres:
+    container_name: postgres
+    build:
+      context: ./requirements/Postgresql
+    networks:
+      - post
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/18
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PW}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+  pgadmin:
+    container_name: pgadmin
+    build:
+      context: ./requirements/pgadmin
+    networks:
+      - post
+    expose:
+      - 80
+    restart: always
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
+
+volumes:
+  postgres_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/gui/incept/data/piscineds'
+  pgadmin_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/gui/incept/data/pgadmindata'
+
+networks:
+  post:
+    driver: bridge
