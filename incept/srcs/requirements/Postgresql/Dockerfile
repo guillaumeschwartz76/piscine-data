@@ -25,6 +25,11 @@ RUN rm -rf /var/lib/postgresql/18/main && \
 COPY entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
+# Copie le script dans le conteneur
+COPY ./tools/generateTable.sh /usr/local/bin/generateTable.sh
+# Donne les droits d'exécution
+RUN chmod +x /usr/local/bin/generateTable.sh
+
 USER postgres
 
 RUN echo "host all all 0.0.0.0/0 trust" >> /var/lib/postgresql/18/main/pg_hba.conf
@@ -36,7 +41,6 @@ RUN echo "host all all 0.0.0.0/0 trust" >> /var/lib/postgresql/18/main/pg_hba.co
 # 'md5' requiert le mot de passe, ce qui est recommandé.
 RUN echo "host all all 0.0.0.0/0 md5" >> /var/lib/postgresql/18/main/pg_hba.conf
 
-#USER postgres
 #VOLUME /var/lib/postgresql/18/main
 EXPOSE 5432
 
