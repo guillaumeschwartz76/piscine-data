@@ -1,5 +1,5 @@
-DIRECTORYDATA := /home/${USER}/incept/data
-DIRECTORYCOMPOSE := /home/${USER}/incept/srcs/docker-compose.yml
+DIRECTORYDATA := /home/${USER}/data/incept/data
+DIRECTORYCOMPOSE := /home/${USER}/data/piscine-data/incept/srcs/docker-compose.yml
 POSTGRESQLVOLUME := $(DIRECTORYDATA)/piscineds
 PGADMINVOLUME := $(DIRECTORYDATA)/pgadmindata
 
@@ -20,6 +20,10 @@ $(NAME):
 down:
 	@cd $(SRCS_DIR) && docker compose -f $(DIRECTORYCOMPOSE) down
 	@echo "docker compose down"
+
+up:
+	@cd $(SRCS_DIR) && docker compose up -d --build
+	@echo "docker compose up"
 
 ps:
 	@cd $(SRCS_DIR) && docker compose ps

@@ -1,5 +1,5 @@
 # Utiliser la même image de base que Postgres pour la cohérence
-FROM debian:bookworm-slim
+FROM debian:bookworm
 
 # Empêcher les installations interactives
 ENV DEBIAN_FRONTEND=noninteractive
