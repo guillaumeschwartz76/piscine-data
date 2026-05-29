@@ -1,2 +1,0 @@
-# piscine-data
-Postgresql project

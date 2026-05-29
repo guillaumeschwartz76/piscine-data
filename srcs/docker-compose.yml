@@ -32,6 +32,8 @@ services:
       - postgres
     volumes:
       - pgadmin_data:/var/lib/pgadmin
+      # Ce lien permet de voir tes scripts SQL sur ta VM et dans pgAdmin
+      - ./requirements/pgadmin/scripts:/var/lib/pgadmin/storage/gschwart_student.fr/scripts
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
