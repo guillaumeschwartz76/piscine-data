@@ -19,6 +19,14 @@ printf '%s\n%s\n%s\n' \
     "$PGADMIN_DEFAULT_PASSWORD" \
     "$PGADMIN_DEFAULT_PASSWORD" | /usr/pgadmin4/bin/setup-web.sh --yes
 
+# ... (après le script setup-web.sh)
+
+echo "Importation du serveur Postgres..."
+# On utilise le binaire python3 qui est DANS le venv de pgadmin
+su -s /bin/bash -c "/usr/pgadmin4/venv/bin/python3 /usr/pgadmin4/web/setup.py load-servers /tmp/servers.json --user '$PGADMIN_DEFAULT_EMAIL'" www-data
+
+# ... (puis lancement d'Apache)
+
 # Message de débogage pour le premier lancement
 if [ ! -f /var/lib/pgadmin/pgadmin4.db ]; then
     echo "Première exécution : Base de données pgAdmin initialisée."

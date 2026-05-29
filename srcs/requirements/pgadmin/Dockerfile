@@ -41,7 +41,7 @@ RUN mkdir -p /var/lib/pgadmin /var/log/pgadmin \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-COPY servers.json /pgadmin4/servers.json
+COPY servers.json /tmp/servers.json
 
 # pgAdmin (via Apache) écoute sur le port 80 à l'intérieur du conteneur
 EXPOSE 80

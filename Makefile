@@ -1,5 +1,5 @@
-DIRECTORYDATA := /home/${USER}/data/incept/data
-DIRECTORYCOMPOSE := /home/${USER}/data/piscine-data/incept/srcs/docker-compose.yml
+DIRECTORYDATA := /home/${USER}/test/data
+DIRECTORYCOMPOSE := /home/${USER}/test/piscine-data/srcs/docker-compose.yml
 POSTGRESQLVOLUME := $(DIRECTORYDATA)/piscineds
 PGADMINVOLUME := $(DIRECTORYDATA)/pgadmindata
 
